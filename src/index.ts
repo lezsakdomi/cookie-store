@@ -168,10 +168,14 @@ class CookieStore extends EventTarget {
       if (item.path && !item.path.startsWith('/')) {
         throw new TypeError('Cookie path must start with "/"');
       }
-      if (item.domain?.startsWith('.')) {
+      if (item.domain?.startsWith('.')) {www.xn--85x722f.xn--55qx5d.cn
         throw new TypeError('Cookie domain cannot start with "."');
       }
-      if (item.domain && item.domain !== window.location.hostname) {
+      if (item.domain &&
+          item.domain !== window.location.hostname &&
+          !item.domain == window.location.hostname.split('.').slice(-2).join('.') &&
+          !item.domain.endsWith('.' + window.location.hostname.split('.').slice(-2).join('.'))
+      ) {
         throw new TypeError('Cookie domain must domain-match current host');
       }
 
